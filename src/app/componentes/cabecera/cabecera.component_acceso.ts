@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'cabecera',
@@ -8,7 +8,14 @@ import { Component, Input } from '@angular/core';
 })
 export class CabeceraComponent {
 
-  @Input() src: string = "";
+  @ViewChild('someInput') etiquetaImg?: ElementRef;
 
+  constructor(private renderer: Renderer2) { }
+
+  addAttribute() {
+
+    this.renderer.setAttribute(this.etiquetaImg?.nativeElement, 'src', '../assets/images/angular.png');
+
+  }
 
 }
