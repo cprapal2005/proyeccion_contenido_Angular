@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'cabecera',
@@ -6,16 +6,11 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
   styles: [
   ]
 })
-export class CabeceraComponent {
+export class CabeceraComponent implements AfterViewInit {
 
-  @ViewChild('someInput') etiquetaImg?: ElementRef;
+  @ViewChild('someInput') etiquetaImg!: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
-
-  addAttribute() {
-
-    this.renderer.setAttribute(this.etiquetaImg?.nativeElement, 'src', '../assets/images/angular.png');
-
-  }
-
+  ngAfterViewInit(): void {
+      this.etiquetaImg!.nativeElement.src = "../assets/images/angular.png";
+    }
 }
